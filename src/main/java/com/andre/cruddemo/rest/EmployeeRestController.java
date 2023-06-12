@@ -5,10 +5,7 @@ import com.andre.cruddemo.entity.Employee;
 import com.andre.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,15 @@ public class EmployeeRestController {
             throw new RuntimeException("Employee id not found - "+employeeId);
         }
         return theEmployee;
+    }
+
+    //Add mapping for POST /employees - add new employee
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee theEmployee){
+        //en caso de que pasen un id en el JSON, se forza a que sea 0
+        theEmployee.setId(0);
+        //esto es para crear en vez de hacer un update
+        Employee dbEmployee = employeeService.save(theEmployee);
+        return dbEmployee;
     }
 }
