@@ -1,10 +1,8 @@
 package com.andre.cruddemo.rest;
 
-import com.andre.cruddemo.dao.EmployeeDAO;
 import com.andre.cruddemo.entity.Employee;
 import com.andre.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
